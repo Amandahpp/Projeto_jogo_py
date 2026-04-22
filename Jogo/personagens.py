@@ -4,6 +4,7 @@ class Personagens:
         self.__nivel = 1
         self.__vida = 100
         self.__xp = 0
+        self.__missoes = []
     @property
     def nome(self):
         return self.__nome
@@ -34,9 +35,22 @@ class Personagens:
     ##aumenta a nivel
     def aumenta_nivel(self):
          self.__nivel +=1 
+    
+    def adicionar_missao(self,missao):
+        self.__missoes.append(missao)
+        
+    def listar_missoes(self):
+        for m in self.__missoes:
+            print(m)
+
+    def concluir_missao(self,nome_missao):
+        for m in self.__missoes:
+            if m.nome == nome_missao:
+                m.conlcuir_missao()
+                self.ganha_xp(m.recompensa)
 
     def exibir_dados(self):
-        return f"Nome: {self.nome}- Nivel: {self.__nivel}- Vida {self.__vida}- Xp{ self.__xp}"
+        return f"Nome: {self.nome} - Nivel: {self.__nivel} - Vida {self.__vida} - XP {self.__xp}"
     
     def __str__(self):
         return self.exibir_dados()

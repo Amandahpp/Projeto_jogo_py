@@ -42,6 +42,14 @@ m3.iniciar_missao()
 m3.concluir_missao()
 m3.exibir_dados()
 
+personagem_teste.adicionar_missao(m1)
+personagem_teste.adicionar_missao(m2)
 
+print("Missões do personagem:")
+personagem_teste.listar_missoes()
+
+personagem_teste.concluir_missao("Guerra Orc")
+
+print(personagem_teste.exibir_dados())
 
 
