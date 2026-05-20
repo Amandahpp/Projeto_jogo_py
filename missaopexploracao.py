@@ -6,7 +6,19 @@ class MissaoExploracao(Missao):
         self.__regiao_destino =regia_destino
         self.__distancia_em_km = distancia_em_km
 
+    def concluir_missao(self, distancia_percorrida):
+
+        if distancia_percorrida >= self.__distancia_em_km:
+
+            self.estado.concluir(self.recompensa)
+
+        else:
+
+            self.estado.concluir(0)
+
     def exibir_dados(self):
-        return super().exibir_dados()
-        print(f"Destino: {self.__regiao_destino}")
-        print(f"Distância: {self.__distancia_em_km} km")
+          return f"""
+          {super().exibir_dados()}
+
+          Destino: {self.__regiao_destino}
+          Distância: {self.__distancia_em_km} km"""

@@ -25,16 +25,21 @@ class Personagens:
     @property
     def xp(self):
         return self.__xp
+    @property
+    def missoes(self):
+        return self.__missoes
+    
     @nome.setter
     def nome(self, novo_nome:str):
         if novo_nome is None:
             raise Exception("nome é obrigatorio")
         self.__nome = novo_nome.title().strip()
     ##GANHA XP
-    def ganha_xp(self, valor: int):
-        if valor <=0:
-             raise Exception("XP deve ser positivo")
-        self.__xp += valor
+    ##def ganha_xp(self, valor: int):
+        ##if valor <=0:
+            ## raise Exception("XP deve ser positivo")
+        ##self.__xp += valor
+
     ##PERDE VIDA
     def perde_vida(self,valor: int):
         if valor <=0:
@@ -82,17 +87,29 @@ class Personagens:
         self.__missoes.append(missao)
         
     def listar_missoes(self):
-        for m in self.__missoes:
-            print(m)
+        if len(self.__missoes) == 0:
+            print("nenhuma missao encontrada")
+            return
+        print("\n ===== MISSOES =====")
 
-    def concluir_missao(self,nome_missao):
+        for i, m in enumerate(self.__missoes):
+            print(f""" [{i}] {m.nome} Descrição: {m.descricao}Recompensa: {m.recompensa} XP Estado: {type(m.estado).__name__} """)
+
+    def concluir_missao(self,nome_missao,valor = 1):
         for m in self.__missoes:
             if m.nome == nome_missao:
-                m.conlcuir_missao()
-                self.ganha_xp(m.recompensa)
+                m.conlcuir_missao(valor)
+                return
+        print("missao nao encontrada")
 
     def exibir_dados(self):
-        return f"Nome: {self.nome} - Nivel: {self.__nivel} - Vida {self.__vida} - XP {self.__xp} Ataque: {self.calculoStatus()}"
+        return f"""
+        ====== PERSONAGENS ======
+        Nome: {self.nome} 
+        Nivel: {self.__nivel} 
+        Vida {self.__vida} 
+        XP {self.__xp} 
+        Ataque: {self.calculoStatus()}"""
     
     def __str__(self):
         return self.exibir_dados()
